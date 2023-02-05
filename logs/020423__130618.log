@@ -1,0 +1,9 @@
+[2023-02-04 13:06:18,961] 10 root - INFO - Reading data form database: {datebase_name} and collection: {collection_name}
+[2023-02-04 13:06:23,724] 12 root - INFO - Found columns:Index(['_id', 'class', 'aa_000', 'ab_000', 'ac_000', 'ad_000', 'ae_000',
+       'af_000', 'ag_000', 'ag_001',
+       ...
+       'ee_002', 'ee_003', 'ee_004', 'ee_005', 'ee_006', 'ee_007', 'ee_008',
+       'ee_009', 'ef_000', 'eg_000'],
+      dtype='object', length=172)
+[2023-02-04 13:06:23,725] 14 root - INFO - Dropping colunm: _id 
+[2023-02-04 13:06:23,919] 16 root - INFO - Rows and columns in df: (36188, 171)
