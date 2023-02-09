@@ -1,0 +1,6 @@
+[2023-02-09 20:13:11,488] 20 root - INFO - exploring collection data as panda dataframe
+[2023-02-09 20:13:11,489] 20 root - INFO - Reading data form database: {datebase_name} and collection: {collection_name}
+[2023-02-09 20:13:11,491] 22 root - INFO - Found columns:Index([], dtype='object')
+[2023-02-09 20:13:11,491] 26 root - INFO - Rows and columns in df: (0, 0)
+[2023-02-09 20:13:11,492] 26 root - INFO - save data in feature store
+[2023-02-09 20:13:11,492] 32 root - INFO - create featrue store folder

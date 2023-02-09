@@ -1,0 +1,8 @@
+[2023-02-09 20:14:47,333] 20 root - INFO - exploring collection data as panda dataframe
+[2023-02-09 20:14:47,333] 20 root - INFO - Reading data form database: {datebase_name} and collection: {collection_name}
+[2023-02-09 20:14:47,337] 22 root - INFO - Found columns:Index([], dtype='object')
+[2023-02-09 20:14:47,337] 26 root - INFO - Rows and columns in df: (0, 0)
+[2023-02-09 20:14:47,337] 26 root - INFO - save data in feature store
+[2023-02-09 20:14:47,337] 32 root - INFO - create featrue store folder
+[2023-02-09 20:14:47,338] 38 root - INFO - save df to feature store folder
+[2023-02-09 20:14:47,339] 42 root - INFO - split data set in to train test split
