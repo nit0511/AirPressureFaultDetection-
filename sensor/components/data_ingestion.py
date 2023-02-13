@@ -50,8 +50,8 @@ class DataIngestion:
 
             logging.info("save train test to feature store folder")
             #save train test to feature store folder
-            train_df.to_csv(path_or_buf = self.data_ingestion_config.feature_store_file_path, index= False, header = True)
-            test_df.to_csv(path_or_buf = self.data_ingestion_config.feature_store_file_path, index= False, header = True)
+            train_df.to_csv(path_or_buf = self.data_ingestion_config.train_file_path, index= False, header = True)
+            test_df.to_csv(path_or_buf = self.data_ingestion_config.test_file_path, index= False, header = True)
 
             #prepare artifact
 

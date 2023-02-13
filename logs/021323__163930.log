@@ -1,0 +1,49 @@
+[2023-02-13 16:39:31,232] 20 root - INFO - exploring collection data as panda dataframe
+[2023-02-13 16:39:31,232] 21 root - INFO - Reading data form database: {datebase_name} and collection: {collection_name}
+[2023-02-13 16:39:34,669] 23 root - INFO - Found columns:Index(['_id', 'class', 'aa_000', 'ab_000', 'ac_000', 'ad_000', 'ae_000',
+       'af_000', 'ag_000', 'ag_001',
+       ...
+       'ee_002', 'ee_003', 'ee_004', 'ee_005', 'ee_006', 'ee_007', 'ee_008',
+       'ee_009', 'ef_000', 'eg_000'],
+      dtype='object', length=172)
+[2023-02-13 16:39:34,670] 25 root - INFO - Dropping colunm: _id 
+[2023-02-13 16:39:34,865] 27 root - INFO - Rows and columns in df: (36188, 171)
+[2023-02-13 16:39:34,865] 26 root - INFO - save data in feature store
+[2023-02-13 16:39:35,397] 32 root - INFO - create featrue store folder
+[2023-02-13 16:39:35,398] 38 root - INFO - save df to feature store folder
+[2023-02-13 16:39:37,733] 42 root - INFO - split data set in to train test split
+[2023-02-13 16:39:38,275] 46 root - INFO - Creating dataset directory folder if not available
+[2023-02-13 16:39:38,276] 51 root - INFO - save train test to feature store folder
+[2023-02-13 16:39:40,362] 63 root - INFO - Data ingestion artifact: DataIngestionArtifact(feature_store_file_path='/config/workspace/artifact/02132023__163931/data_ingestion/feature_store/sensor.csv', train_file_path='/config/workspace/artifact/02132023__163931/data_ingestion/dataset/train.csv', test_file_path='/config/workspace/artifact/02132023__163931/data_ingestion/dataset/test.csv')
+[2023-02-13 16:39:40,712] 19 root - INFO - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data validaion <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[2023-02-13 16:39:40,712] 103 root - INFO - reading base dataframe
+[2023-02-13 16:39:43,615] 106 root - INFO - replace na value in base dataframe
+[2023-02-13 16:39:43,615] 39 root - INFO - selection column name which contains null abobe to 0.2
+[2023-02-13 16:39:44,527] 44 root - INFO - Columns to drop: Index(['ab_000', 'ad_000', 'bk_000', 'bl_000', 'bm_000', 'bn_000', 'bo_000',
+       'bp_000', 'bq_000', 'br_000', 'cf_000', 'cg_000', 'ch_000', 'co_000',
+       'cr_000', 'ct_000', 'cu_000', 'cv_000', 'cx_000', 'cy_000', 'cz_000',
+       'da_000', 'db_000', 'dc_000'],
+      dtype='object')
+[2023-02-13 16:39:44,613] 110 root - INFO - dropping null values columns from base dataframe
+[2023-02-13 16:39:44,613] 112 root - INFO - reading the train data frame
+[2023-02-13 16:39:45,011] 115 root - INFO - reading test dataframe
+[2023-02-13 16:39:45,114] 117 root - INFO - dropping null values columns from train dataframe
+[2023-02-13 16:39:45,114] 39 root - INFO - selection column name which contains null abobe to 0.2
+[2023-02-13 16:39:45,126] 44 root - INFO - Columns to drop: Index(['ab_000', 'ad_000', 'bk_000', 'bl_000', 'bm_000', 'bn_000', 'bo_000',
+       'bp_000', 'bq_000', 'br_000', 'cf_000', 'cg_000', 'ch_000', 'co_000',
+       'cr_000', 'ct_000', 'cu_000', 'cv_000', 'cx_000', 'cy_000', 'cz_000',
+       'da_000', 'db_000', 'dc_000'],
+      dtype='object')
+[2023-02-13 16:39:45,135] 119 root - INFO - dropping null values columns from test dataframe
+[2023-02-13 16:39:45,135] 39 root - INFO - selection column name which contains null abobe to 0.2
+[2023-02-13 16:39:45,140] 44 root - INFO - Columns to drop: Index(['ab_000', 'ad_000', 'bk_000', 'bl_000', 'bm_000', 'bn_000', 'bo_000',
+       'bp_000', 'bq_000', 'br_000', 'cf_000', 'cg_000', 'ch_000', 'co_000',
+       'cr_000', 'ct_000', 'cu_000', 'cv_000', 'cx_000', 'cy_000', 'cz_000',
+       'da_000', 'db_000', 'dc_000'],
+      dtype='object')
+[2023-02-13 16:39:51,077] 127 root - INFO - is all required columns present train_df
+[2023-02-13 16:39:51,077] 129 root - INFO - is all required columns present in test df
+[2023-02-13 16:39:51,077] 133 root - INFO - As all columns are available in train_df hence detecting data drift
+[2023-02-13 16:39:53,939] 136 root - INFO - As all columns are available in train_df hence detecting data drift
+[2023-02-13 16:39:55,114] 140 root - INFO - writing report in Yaml file
+[2023-02-13 16:39:55,212] 145 root - INFO - Data Validation artifact: DataValidationArtifact(report_file_path='/config/workspace/artifact/02132023__163931/data_validation/report.yaml')
