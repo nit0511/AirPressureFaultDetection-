@@ -4,11 +4,10 @@ from sensor.logger import logging
 import os, sys
 from typing import Optional
 from sensor import utils
-from sensor.utils import Data
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import Pipeline
-from sklearn.Pipeline import LableEncoder
+from sklearn.pipeline import Pipeline
+from sklearn import preprocessing
 from imblearn.combine import SMOTETomek
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import RobustScaler
@@ -37,6 +36,7 @@ class DataTrasformation:
                 ('Imputer',simple_imputer),
                 ('RobustScaler',robuar_scaler)
             ])
+            return constant_pipeline
         except Exception as e:
             raise SensorException(e, sys)
 
@@ -49,10 +49,10 @@ class DataTrasformation:
             input_feature_train_df = train_df.drop(TARGET_COLUMN,axis=1)
             input_feature_test_df = test_df.drop(TARGET_COLUMN,axis=1)
             #selection target feature for train and test data frame
-            target_feature_train_df = train_df(TARGET_COLUMN)
-            target_feature_test_df = test_df(TARGET_COLUMN)
+            target_feature_train_df = train_df[TARGET_COLUMN]
+            target_feature_test_df = test_df[TARGET_COLUMN]
 
-            lable_encoder = LableEncoder()
+            lable_encoder = preprocessing.LabelEncoder()
             lable_encoder.fit(target_feature_train_df)
             #transformation on target column
             target_feature_train_arr = lable_encoder.transform(target_feature_train_df)
@@ -75,8 +75,8 @@ class DataTrasformation:
             logging.info(f"After resampling in testing set Input: {input_feature_test_arr.shape} Target: {target_feature_test_arr}")
 
             #target encoder
-            train_arr = np.c(input_feature_train_arr ,target_feature_train_arr)
-            test_arr = np.c(input_feature_test_arr ,target_feature_test_arr)
+            train_arr = np.c_[input_feature_train_arr ,target_feature_train_arr]
+            test_arr = np.c_[input_feature_test_arr ,target_feature_test_arr]
 
             #save numpy array
             utils.save_numpy_array_data(file_path=self.data_transformation_config.transformed_train_path, array= train_arr)
@@ -86,13 +86,13 @@ class DataTrasformation:
             utils.save_object(file_path=self.data_transformation_config.target_encoder_path, obj= lable_encoder)
 
             data_transformaton_artifact = artifact_entity.DataTransformationArtifact(
-                transfor_object_path = self.data_transformation_config.transfor_object_path,
+                transform_object_path = self.data_transformation_config.transfor_object_path,
                 transformed_train_path = self.data_transformation_config.transformed_train_path,
                 transformed_test_path = self.data_transformation_config.transformed_test_path,
                 target_encoder_path = self.data_transformation_config.target_encoder_path
             )
 
-            logging.info(f"Data transformation object{data_transformation_artifact}")
+            logging.info(f"Data transformation object{data_transformaton_artifact}")
 
         except Exception as e:
             raise SensorException(e, sys)

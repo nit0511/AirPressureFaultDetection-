@@ -5,6 +5,7 @@ from sensor.exception import SensorException
 import os, sys
 import yaml
 import dill
+import numpy as np
 
 
 def get_collection_as_dataframe(database_name:str,collection_name:str)->pd.DataFrame:
