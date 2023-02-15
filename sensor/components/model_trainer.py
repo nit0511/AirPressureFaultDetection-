@@ -31,7 +31,7 @@ class ModelTrainer:
 
    
 
-    def train_model(self):
+    def train_model(self, x, y):
         try:
             xgb_clf = XGBClassifier()
             xgb_clf.fit(x,y)
@@ -39,25 +39,25 @@ class ModelTrainer:
         except Exception as e:
             raise SensorException(e, sys)
 
-    def initiate_model_trainer(self,)->artifact_entity.ModelTrainerArtifact:
+    def initiate_model_trainer(self)->artifact_entity.ModelTrainerArtifact:
         try:
             logging.info(f"{type(self.data_transformation_artifact)}")
             logging.info(f"Loading train and test array")
-            train_arr = utils.load_numpy_array_data(file_path= self.data_transformation_artifact.transformed_train_path)
-            test_arr = utils.load_numpy_array_data(file_path= self.data_transformation_artifact.transformed_test_path)
+            train_arr = utils.load_numpy_array_data(file_path=self.data_transformation_artifact.transformed_train_path)
+            test_arr = utils.load_numpy_array_data(file_path=self.data_transformation_artifact.transformed_test_path)
             
             logging.info(f"Splitting input and target feature from both train and test arr.")
             x_train, y_train = train_arr[:,:-1], train_arr[:,-1]
             x_test, y_test = test_arr[:,:-1], test_arr[:,-1]
 
             logging.info(f"train the model")
-            model = train_model(x=x_train,y = y_train)
+            model = self.train_model(x=x_train,y = y_train)
             yhat_train = model.predict(x_train)
             logging.info(f"calculating training score")
             f1_train_score = f1_score(y_true = y_train, y_pred = yhat_train)
-            yhat_test = f1_score(y_true = y_train, y_pred = yhat_test)
+            yhat_test = model.predict(x_test)
             logging.info(f"calculating testing score")
-            f1_test_score = f1_score(y_true = y_train, y_pred = yhat_test)
+            f1_test_score = f1_score(y_true = y_test, y_pred = yhat_test)
             logging.info(f"trian score: {f1_train_score} and Test score: {f1_test_score}")
             #check for overfitting or underfitting of expected score
             logging.info(f"checking model if model is underfitting")
@@ -77,7 +77,7 @@ class ModelTrainer:
             logging.info(f"preparing the artifact")
             model_trainer_artifact = artifact_entity.ModelTrainerArtifact(model_path= self.model_trainer_config.model_path,
             f1_train_score = f1_train_score, f1_test_score = f1_test_score)
-            logging.info(f"Model trainer artifact: {model_train_artifact}")
+            logging.info(f"Model trainer artifact: {model_trainer_artifact}")
             return model_trainer_artifact
 
 

@@ -82,17 +82,18 @@ class DataTrasformation:
             utils.save_numpy_array_data(file_path=self.data_transformation_config.transformed_train_path, array= train_arr)
             utils.save_numpy_array_data(file_path=self.data_transformation_config.transformed_test_path, array= test_arr)
 
-            utils.save_object(file_path=self.data_transformation_config.transfor_object_path, obj= transformation_pipeline)
+            utils.save_object(file_path=self.data_transformation_config.transform_object_path, obj= transformation_pipeline)
             utils.save_object(file_path=self.data_transformation_config.target_encoder_path, obj= lable_encoder)
 
-            data_transformaton_artifact = artifact_entity.DataTransformationArtifact(
-                transform_object_path = self.data_transformation_config.transfor_object_path,
+            data_transformation_artifact = artifact_entity.DataTransformationArtifact(
+                transform_object_path = self.data_transformation_config.transform_object_path,
                 transformed_train_path = self.data_transformation_config.transformed_train_path,
                 transformed_test_path = self.data_transformation_config.transformed_test_path,
                 target_encoder_path = self.data_transformation_config.target_encoder_path
             )
 
-            logging.info(f"Data transformation object{data_transformaton_artifact}")
+            logging.info(f"Data transformation object{data_transformation_artifact}")
+            return data_transformation_artifact
 
         except Exception as e:
             raise SensorException(e, sys)
